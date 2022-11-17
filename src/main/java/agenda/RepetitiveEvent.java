@@ -1,7 +1,8 @@
 package agenda;
 
-import java.util.*;
-import java.time.*;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 /**
@@ -34,9 +35,22 @@ public class RepetitiveEvent extends Event {
      *
      * @param date the event will not occur at this date
      */
+
+    // J'arrete l'événement au jour precedent l'exception puis je le recommence au jour suivant l'exception
     public void addException(LocalDate date) {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+String titre = this.getTitle();
+Duration durée = this.getDuration();
+LocalDateTime dayStart = this.getStart();
+ChronoUnit fréquence= this.getFrequency();
+
+// Suppression de l'évent
+
+
+// Création du jour suivant
+dayStart = date.atStartOfDay();
+dayStart = dayStart.plus(1, frequency);
+//Création du nouvel évent
+this = new RepetitiveEvent(titre,dayStart ,durée,fréquence);
     }
 
     /**
