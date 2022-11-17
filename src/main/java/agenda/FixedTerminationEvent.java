@@ -75,7 +75,7 @@ public class FixedTerminationEvent extends RepetitiveEvent {
         if(nbIteration == 0){
             return nbIteration;
         }else{
-           return (long) getDuration().dividedBy((getFrequency());
+            return getDuration().dividedBy(getFrequency().getDuration());
         }
 
     }
