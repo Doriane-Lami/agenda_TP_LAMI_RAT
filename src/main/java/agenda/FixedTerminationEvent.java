@@ -79,5 +79,25 @@ public class FixedTerminationEvent extends RepetitiveEvent {
         }
 
     }
+
+
+    public boolean isInDay(LocalDate aDay) throws Exception {
+        LocalDateTime start = this.getStart();
+        int occurence = 0;
+        while (aDay.atStartOfDay().isBefore(start)) {
+            if (occurence < this.getNumberOfOccurrences()) {
+                if (this.getStart().equals(aDay.atStartOfDay())) {
+                    return true;
+                } else if (this.getStart().plus(this.getDuration()).isAfter(aDay.atStartOfDay()) && this.getStart().isBefore(aDay.atStartOfDay())) {
+                    return true;
+                } else {
+                    start = start.plus(1, getFrequency());
+                }
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
         
 }
