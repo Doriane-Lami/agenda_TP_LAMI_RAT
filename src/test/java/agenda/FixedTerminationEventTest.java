@@ -40,25 +40,25 @@ public class FixedTerminationEventTest {
     }
     
     @Test
-    public void eventIsInItsStartDay() {
+    public void eventIsInItsStartDay() throws EventException {
         assertTrue(fixedTermination.isInDay(nov_1_2020), "Un événement a lieu dans son jour de début");
         assertTrue(fixedRepetitions.isInDay(nov_1_2020), "Un événement a lieu dans son jour de début");
     }
 
     @Test
-    public void eventIsNotInDayBefore() {
+    public void eventIsNotInDayBefore() throws EventException {
         assertFalse(fixedTermination.isInDay(nov_1_2020.minus(1, ChronoUnit.DAYS)), "Un événement n'a pas lieu avant son jour de début");
         assertFalse(fixedRepetitions.isInDay(nov_1_2020.minus(1, ChronoUnit.DAYS)), "Un événement n'a pas lieu avant son jour de début");
     }
 
     @Test
-    public void eventOccurs10WeeksAfter() {
+    public void eventOccurs10WeeksAfter() throws EventException {
         assertTrue(fixedTermination.isInDay(nov_1_2020.plus(6, ChronoUnit.WEEKS)), "Cet événement se produit toutes les semaines");
         assertTrue(fixedRepetitions.isInDay(nov_1_2020.plus(6, ChronoUnit.WEEKS)), "Cet événement se produit toutes les semaines");
     }
 
     @Test
-    public void eventIsNotInExceptionDays() {
+    public void eventIsNotInExceptionDays() throws EventException {
         fixedTermination.addException(nov_1_2020.plus(2, ChronoUnit.WEEKS)); // ne se produit pas à W+2
         fixedTermination.addException(nov_1_2020.plus(4, ChronoUnit.WEEKS)); // ne se produit pas à W+4
         assertTrue(fixedTermination.isInDay(nov_1_2020.plus(1, ChronoUnit.WEEKS)), "Cet événement se produit toutes les semaines");
