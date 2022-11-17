@@ -9,7 +9,7 @@ public class Event {
      * The myTitle of this event
      */
     private String myTitle;
-    
+
     /**
      * The starting time of the event
      */
@@ -28,8 +28,8 @@ public class Event {
     /**
      * Constructs an event
      *
-     * @param title the title of this event
-     * @param start the start time of this event
+     * @param title    the title of this event
+     * @param start    the start time of this event
      * @param duration the duration of this event
      */
     public Event(String title, LocalDateTime start, Duration duration) {
@@ -44,30 +44,18 @@ public class Event {
      * @param aDay the day to test
      * @return true if the event occurs on that day, false otherwise
      */
+
     public boolean isInDay(LocalDate aDay) throws Exception {
-        if (this.getStart().equals(aDay)) {
+
+        if (this.getStart().equals(aDay.atStartOfDay())) {
             return true;
-        } else {
-            LocalDate d2 = aDay.plus(this.getDuration());
-            long j = ChronoUnit.DAYS.between(this.getStart(), d2);
-            while(j>0){
-                if ((d2.equals(aDay)){
-                    return true;
-                }
-                j=j-1;
-                d2 = d2.minus(1, ChronoUnit.DAYS);
-            }
-            if(jour == false){
-                if (this.myStart.before(aDay)) {
-                    throw new java.lang.Exception("L'évenement a lieu avant");
-                } else {
-                    throw new java.lang.Exception("L'évenement a lieu après");
-                }
-                return false;
-            }
+        }else if(this.getStart().plus(this.getDuration()).isAfter(aDay.atStartOfDay()) && this.getStart().isBefore(aDay.atStartOfDay())){
+            return true;
+        }else{
+            return false;
         }
     }
-   
+
     /**
      * @return the myTitle
      */
@@ -90,6 +78,5 @@ public class Event {
         return myDuration;
     }
 
-   
-    
+
 }
