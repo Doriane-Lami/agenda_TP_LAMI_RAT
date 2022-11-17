@@ -22,22 +22,22 @@ public class NoTerminationEventTest {
     RepetitiveEvent neverEnding = new RepetitiveEvent("Never Ending", nov_1__2020_22_30, min_120, ChronoUnit.DAYS);
 
     @Test
-    public void eventIsInItsStartDay() {
+    public void eventIsInItsStartDay() throws Exception {
         assertTrue(neverEnding.isInDay(nov_1_2020), "Un événement a lieu dans son jour de début");
     }
 
     @Test
-    public void eventIsNotInDayBefore() {
+    public void eventIsNotInDayBefore() throws Exception {
         assertFalse(neverEnding.isInDay(nov_1_2020.minus(1, ChronoUnit.DAYS)),  "Un événement n'a pas lieu avant son jour de début");
     }
 
     @Test
-    public void eventOccurs10DayAfter() {
+    public void eventOccurs10DayAfter() throws Exception {
         assertTrue(neverEnding.isInDay(nov_1_2020.plus(10, ChronoUnit.DAYS)),  "Cet événement se produit tous les jours");
     }
     
     @Test
-    public void eventIsNotInExceptionDays() {
+    public void eventIsNotInExceptionDays() throws Exception {
         neverEnding.addException(nov_1_2020.plus(2, ChronoUnit.DAYS)); // ne se produit pas à J+2
         neverEnding.addException(nov_1_2020.plus(4, ChronoUnit.DAYS)); // ne se produit pas à J+4
         assertTrue(neverEnding.isInDay(nov_1_2020.plus(1, ChronoUnit.DAYS)),  "Cet événement se produit tous les jours");

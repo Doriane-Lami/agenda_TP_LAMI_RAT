@@ -44,29 +44,28 @@ public class Event {
      * @param aDay the day to test
      * @return true if the event occurs on that day, false otherwise
      */
-    public boolean isInDay(LocalDate aDay) throws EventException {
-        jour=false;
+    public boolean isInDay(LocalDate aDay) throws Exception {
         if (this.getStart().equals(aDay)) {
-            jour = true;
+            return true;
         } else {
             LocalDate d2 = aDay.plus(this.getDuration());
             long j = ChronoUnit.DAYS.between(this.getStart(), d2);
             while(j>0){
                 if ((d2.equals(aDay)){
-                    jour = true;
+                    return true;
                 }
                 j=j-1;
                 d2 = d2.minus(1, ChronoUnit.DAYS);
             }
             if(jour == false){
                 if (this.myStart.before(aDay)) {
-                    throw new EventException("L'évenement a lieu avant");
+                    throw new java.lang.Exception("L'évenement a lieu avant");
                 } else {
-                    throw new EventException("L'évenement a lieu après");
+                    throw new java.lang.Exception("L'évenement a lieu après");
                 }
+                return false;
             }
         }
-            return jour;
     }
    
     /**

@@ -29,19 +29,19 @@ public class EventTest {
     Event overlapping = new Event("Overlapping event", nov_1__2020_22_30, min_120);
 
     @Test
-    public void eventIsInItsStartDay() throws EventException {
+    public void eventIsInItsStartDay() throws Exception {
         assertTrue(simple.isInDay(nov_1_2020), "Un événement a lieu dans son jour de début");
         assertTrue(overlapping.isInDay(nov_1_2020), "Un événement a lieu dans son jour de début");
     }
 
     @Test
-    public void eventIsNotInDayBefore() throws EventException {
+    public void eventIsNotInDayBefore() throws Exception {
         assertFalse(simple.isInDay(nov_1_2020.minus(1, ChronoUnit.DAYS)),  "Un événement n'a pas lieu avant son jour de début");
         assertFalse(overlapping.isInDay(nov_1_2020.minus(1, ChronoUnit.DAYS)),  "Un événement n'a pas lieu avant son jour de début");
     }
 
     @Test
-    public void overlappingEventIsInDayAfter() throws EventException {
+    public void overlappingEventIsInDayAfter() throws Exception {
         assertFalse(simple.isInDay(nov_1_2020.plus(1, ChronoUnit.DAYS)),      "Cet événement ne déborde pas sur le jour suivant");
         assertTrue(overlapping.isInDay(nov_1_2020.plus(1, ChronoUnit.DAYS)),  "Cet événement déborde sur le jour suivant");
     }
