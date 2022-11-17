@@ -51,7 +51,7 @@ public class Event {
 
     public boolean isInDay(LocalDate aDay) throws Exception {
 
-        if (this.getStart().equals(aDay.atStartOfDay())) {
+        if (this.getStart().getDayOfYear() == (aDay.atStartOfDay()).getDayOfYear()) {
             return true;
         }else if(this.getStart().plus(this.getDuration()).isAfter(aDay.atStartOfDay()) && this.getStart().isBefore(aDay.atStartOfDay())){
             return true;
