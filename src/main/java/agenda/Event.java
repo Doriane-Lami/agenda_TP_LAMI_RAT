@@ -1,6 +1,7 @@
 package agenda;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class Event {
 
@@ -15,10 +16,14 @@ public class Event {
     private LocalDateTime myStart;
 
     /**
-     * The durarion of the event 
+     * The duration of the event
      */
     private Duration myDuration;
 
+    /**
+     * boolean
+     */
+    private boolean jour;
 
     /**
      * Constructs an event
@@ -39,9 +44,29 @@ public class Event {
      * @param aDay the day to test
      * @return true if the event occurs on that day, false otherwise
      */
-    public boolean isInDay(LocalDate aDay) {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+    public boolean isInDay(LocalDate aDay) throws EventException {
+        jour=false;
+        if (this.getStart().equals(aDay)) {
+            jour = true;
+        } else {
+            LocalDate d2 = aDay.plus(this.getDuration());
+            long j = ChronoUnit.DAYS.between(this.getStart(), d2);
+            while(j>0){
+                if ((d2.equals(aDay)){
+                    jour = true;
+                }
+                j=j-1;
+                d2 = d2.minus(1, ChronoUnit.DAYS);
+            }
+            if(jour == false){
+                if (this.myStart.before(aDay)) {
+                    throw new EventException("L'évenement a lieu avant");
+                } else {
+                    throw new EventException("L'évenement a lieu après");
+                }
+            }
+        }
+            return jour;
     }
    
     /**
