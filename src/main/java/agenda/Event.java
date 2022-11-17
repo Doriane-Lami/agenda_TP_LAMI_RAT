@@ -38,6 +38,10 @@ public class Event {
         this.myDuration = duration;
     }
 
+    public String toString(){
+        return myTitle;
+    }
+
     /**
      * Tests if an event occurs on a given day
      *
@@ -47,7 +51,7 @@ public class Event {
 
     public boolean isInDay(LocalDate aDay) throws Exception {
 
-        if (this.getStart().equals(aDay.atStartOfDay())) {
+        if (this.getStart().getDayOfYear() == (aDay.atStartOfDay()).getDayOfYear()) {
             return true;
         }else if(this.getStart().plus(this.getDuration()).isAfter(aDay.atStartOfDay()) && this.getStart().isBefore(aDay.atStartOfDay())){
             return true;
@@ -59,6 +63,7 @@ public class Event {
     /**
      * @return the myTitle
      */
+
     public String getTitle() {
         return myTitle;
     }
