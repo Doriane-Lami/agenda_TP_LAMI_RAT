@@ -75,6 +75,16 @@ public class Event {
         return myStart;
     }
 
+    public int compareTo(Event e) {
+        LocalDateTime s1 = this.getStart();
+        LocalDateTime s2 = e.getStart();
+
+        if (s1.equals(s2)) {
+            return this.getDuration().compareTo(e.getDuration());
+        } else {
+            return s1.compareTo(s2);
+        }
+    }
 
     /**
      * @return the myDuration

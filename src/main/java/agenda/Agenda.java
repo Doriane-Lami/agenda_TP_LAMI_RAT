@@ -8,9 +8,8 @@ import java.util.*;
  */
 public class Agenda {
 
-    public final TreeSet<Event> myEvents = new TreeSet<>();
+    protected final TreeSet<Event> myEvents = new TreeSet<>();
 
-    // A mettre dans Event ?
 
 
     /**

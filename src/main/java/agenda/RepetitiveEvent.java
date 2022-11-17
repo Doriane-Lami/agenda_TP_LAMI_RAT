@@ -42,14 +42,17 @@ public class RepetitiveEvent extends Event {
     }
 
     public boolean isInDay(LocalDate aDay) throws Exception {
-
-        if (this.getStart().equals(aDay.atStartOfDay())) {
-            return true;
-        }else if(this.getStart().plus(this.getDuration()).isAfter(aDay.atStartOfDay()) && this.getStart().isBefore(aDay.atStartOfDay())){
-            return true;
-        }else{
-            return false;
+        LocalDateTime start = this.getStart();
+        while (aDay.atStartOfDay().isBefore(start)) {
+            if (this.getStart().equals(aDay.atStartOfDay())) {
+                return true;
+            } else if (this.getStart().plus(this.getDuration()).isAfter(aDay.atStartOfDay()) && this.getStart().isBefore(aDay.atStartOfDay())) {
+                return true;
+            } else {
+                start = start.plus(1, frequency);
+            }
         }
+        return false;
     }
 
     /**
