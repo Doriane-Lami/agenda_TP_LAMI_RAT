@@ -7,6 +7,12 @@ import java.util.*;
  * Description : An agenda that stores events
  */
 public class Agenda {
+
+    private final TreeSet<Event> myEvents = new TreeSet<>();
+
+    // A mettre dans Event ?
+
+
     /**
      * Adds an event to this agenda
      *
@@ -14,17 +20,25 @@ public class Agenda {
      */
     public void addEvent(Event e) {
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        myEvents.add(e);
     }
 
     /**
      * Computes the events that occur on a given day
      *
-     * @param day the day toi test
+     * @param day the day to test
      * @return and iteraror to the events that occur on that day
      */
     public List<Event> eventsInDay(LocalDate day) {
         // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        //throw new UnsupportedOperationException("Pas encore implémenté");
+        List<Event> eventsofday = new ArrayList<>();
+        for(Event e : myEvents){
+            if(e.equals(day)){
+                eventsofday.add(e);
+            }
+        }
+        return eventsofday;
     }
 }
