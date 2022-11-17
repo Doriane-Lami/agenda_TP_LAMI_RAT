@@ -38,23 +38,21 @@ public class RepetitiveEvent extends Event {
 
     // J'arrete l'événement au jour precedent l'exception puis je le recommence au jour suivant l'exception
     public void addException(LocalDate date) {
-String titre = this.getTitle();
-Duration durée = this.getDuration();
-LocalDateTime dayStart = this.getStart();
-ChronoUnit fréquence= this.getFrequency();
 
-// Suppression de l'évent
+    }
 
+    public boolean isInDay(LocalDate aDay) throws Exception {
 
-// Création du jour suivant
-dayStart = date.atStartOfDay();
-dayStart = dayStart.plus(1, frequency);
-//Création du nouvel évent
-this = new RepetitiveEvent(titre,dayStart ,durée,fréquence);
+        if (this.getStart().equals(aDay.atStartOfDay())) {
+            return true;
+        }else if(this.getStart().plus(this.getDuration()).isAfter(aDay.atStartOfDay()) && this.getStart().isBefore(aDay.atStartOfDay())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
-     *
      * @return the type of repetition
      */
     public ChronoUnit getFrequency() {

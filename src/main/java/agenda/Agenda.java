@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class Agenda {
 
-    private final TreeSet<Event> myEvents = new TreeSet<>();
+    public final TreeSet<Event> myEvents = new TreeSet<>();
 
     // A mettre dans Event ?
 
@@ -20,6 +20,10 @@ public class Agenda {
      */
     public void addEvent(Event e) {
         myEvents.add(e);
+    }
+
+    public void removeEvent(Event e){
+        myEvents.remove(e);
     }
 
     /**
@@ -37,5 +41,9 @@ public class Agenda {
             }
         }
         return eventsofday;
+    }
+
+    public TreeSet<Event> getMyEvents() {
+        return myEvents;
     }
 }
