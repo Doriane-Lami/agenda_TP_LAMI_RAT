@@ -38,6 +38,10 @@ public class Event {
         this.myDuration = duration;
     }
 
+    public String toString(){
+        return myTitle;
+    }
+
     /**
      * Tests if an event occurs on a given day
      *
@@ -59,6 +63,7 @@ public class Event {
     /**
      * @return the myTitle
      */
+
     public String getTitle() {
         return myTitle;
     }
